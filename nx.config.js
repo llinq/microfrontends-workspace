@@ -1,4 +1,4 @@
-{
+module.exports = {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
     "default": [
@@ -49,5 +49,6 @@
         "^build"
       ]
     }
-  }
+  },
+  "nxCloudId": process.env.NX_CLOUD_ID
 }
