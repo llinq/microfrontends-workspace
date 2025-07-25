@@ -14,7 +14,6 @@ jobs:
   main:
     runs-on: ubuntu-latest
     env:
-      NX_CLOUD_ID: ${{ secrets.NX_CLOUD_ID }}
       NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
       NX_CLOUD_ACCESS_KEY: ${{ secrets.NX_CLOUD_ID }}
     steps:
