@@ -26,9 +26,6 @@ jobs:
           node-version: 20
           cache: "npm"
 
-      - name: Set NX_CLOUD_ID
-        run: echo "NX_CLOUD_ID=${{ secrets.NX_CLOUD_ID }}" >> $GITHUB_ENV
-
       - run: npm ci --legacy-peer-deps
 
       - run: npx nx run-many -t build
