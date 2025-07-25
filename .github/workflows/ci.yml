@@ -10,6 +10,10 @@ permissions:
   actions: read
   contents: read
 
+env:
+  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+  NX_CLOUD_ACCESS_KEY: ${{ secrets.NX_CLOUD_ACCESS_KEY }}
+
 jobs:
   install-dependencies:
     runs-on: ubuntu-latest
@@ -38,9 +42,6 @@ jobs:
   log-secrets:
     runs-on: ubuntu-latest
     needs: install-dependencies
-    env:
-      NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
-      NX_CLOUD_ACCESS_KEY: ${{ secrets.NX_CLOUD_ACCESS_KEY }}
     steps:
       - name: Log secrets
         run: |
@@ -50,9 +51,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: log-secrets
-    env:
-      NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
-      NX_CLOUD_ACCESS_KEY: ${{ secrets.NX_CLOUD_ACCESS_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -85,9 +83,6 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     needs: build
-    env:
-      NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
-      NX_CLOUD_ACCESS_KEY: ${{ secrets.NX_CLOUD_ACCESS_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -112,9 +107,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     needs: build
-    env:
-      NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
-      NX_CLOUD_ACCESS_KEY: ${{ secrets.NX_CLOUD_ACCESS_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -147,9 +139,6 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     needs: [lint, test]
-    env:
-      NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
-      NX_CLOUD_ACCESS_KEY: ${{ secrets.NX_CLOUD_ACCESS_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -176,9 +165,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: [install-dependencies, log-secrets, build, lint, test, ci]
     if: always()
-    env:
-      NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
-      NX_CLOUD_ACCESS_KEY: ${{ secrets.NX_CLOUD_ACCESS_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
