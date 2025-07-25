@@ -14,11 +14,11 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - shell: bash
+      - shell: pwsh
         env:
           NX_CLOUD_ID: ${{ secrets.NX_CLOUD_ID }}
         run: |
-          example-command "$NX_CLOUD_ID"
+          echo "$env:NX_CLOUD_ID"
 
       - uses: actions/checkout@v4
         with:
