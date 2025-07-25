@@ -15,6 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NX_CLOUD_ID: ${{ secrets.NX_CLOUD_ID }}
+      NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ID }}
+      NX_CLOUD_ACCESS_KEY: ${{ secrets.NX_CLOUD_ID }}
     steps:
       - name: Log env value
         run: echo "My secret value is $NX_CLOUD_ID"
