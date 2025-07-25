@@ -17,7 +17,7 @@ jobs:
       NX_CLOUD_ID: Teste
     steps:
       - name: Log env value
-        run: echo $NX_CLOUD_I
+        run: echo "My secret value is $NX_CLOUD_ID"
 
       - uses: actions/checkout@v4
         with:
