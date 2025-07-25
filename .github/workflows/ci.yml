@@ -27,6 +27,8 @@ jobs:
       - run: npm ci --legacy-peer-deps
 
       - run: npx nx run-many -t lint test build
+        env:
+          NX_CLOUD_ID: ${{ vars.NX_CLOUD_ID }}
 
       - run: npx nx-cloud fix-ci
         if: always()
