@@ -13,9 +13,13 @@ permissions:
 jobs:
   main:
     runs-on: ubuntu-latest
-    env:
-      NX_CLOUD_ID: ${{ secrets.NX_CLOUD_ID }}
     steps:
+      - shell: bash
+        env:
+          NX_CLOUD_ID: ${{ secrets.NX_CLOUD_ID }}
+        run: |
+          example-command "$env:NX_CLOUD_ID"
+
       - uses: actions/checkout@v4
         with:
           filter: tree:0
@@ -26,7 +30,7 @@ jobs:
           node-version: 20
           cache: "npm"
 
-            # Step para verificar se a variável existe
+      # Step para verificar se a variável existe
       - name: Check if NX_CLOUD_ID is set
         run: |
           if [ -z "$NX_CLOUD_ID" ]; then
