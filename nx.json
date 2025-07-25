@@ -50,5 +50,5 @@
       ]
     }
   },
-  "nxCloudId": "NX_PUBLIC_CLOUD_ID"
+  "nxCloudId": "{env.NX_CLOUD_ID}"
 }
