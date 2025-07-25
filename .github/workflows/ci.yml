@@ -24,7 +24,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
+
+      - name: Set NX_CLOUD_ID
+        run: echo "NX_CLOUD_ID=${{ secrets.NX_CLOUD_ID }}" >> $GITHUB_ENV
 
       - run: npm ci --legacy-peer-deps
 

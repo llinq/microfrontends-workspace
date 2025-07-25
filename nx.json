@@ -49,6 +49,5 @@
         "^build"
       ]
     }
-  },
-  "nxCloudId": "{env.NX_CLOUD_ID}"
+  }
 }
