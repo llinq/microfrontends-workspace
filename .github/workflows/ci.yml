@@ -34,8 +34,6 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
 
   log-secrets:
     runs-on: ubuntu-latest
@@ -44,22 +42,6 @@ jobs:
       NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
       NX_CLOUD_ACCESS_KEY: ${{ secrets.NX_CLOUD_ACCESS_KEY }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Restore node_modules
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
-
       - name: Log secrets
         run: |
           echo "NX_CLOUD_ACCESS_TOKEN is set: ${{ secrets.NX_CLOUD_ACCESS_TOKEN != '' }}"
@@ -88,8 +70,6 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
 
       - name: Build
         run: npx nx run-many -t build
@@ -125,16 +105,6 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
-
-      - name: Restore build artifacts
-        uses: actions/cache@v4
-        with:
-          path: |
-            dist
-            .nx/cache
-          key: ${{ runner.os }}-build-${{ github.sha }}
 
       - name: Lint
         run: npx nx run-many -t lint
@@ -162,8 +132,6 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
 
       - name: Restore build artifacts
         uses: actions/cache@v4
@@ -199,16 +167,6 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
-
-      - name: Restore build artifacts
-        uses: actions/cache@v4
-        with:
-          path: |
-            dist
-            .nx/cache
-          key: ${{ runner.os }}-build-${{ github.sha }}
 
       - name: CI
         run: npx nx run-many -t ci
@@ -238,8 +196,6 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
 
       - name: NX Cloud AI fix-ci
         run: npx nx-cloud fix-ci
