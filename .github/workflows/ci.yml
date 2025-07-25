@@ -13,12 +13,11 @@ permissions:
 jobs:
   main:
     runs-on: ubuntu-latest
+    env:
+      NX_CLOUD_ID: Teste
     steps:
-      - shell: pwsh
-        env:
-          NX_CLOUD_ID: ${{ secrets.NX_CLOUD_ID }}
-        run: |
-          echo "$env:NX_CLOUD_ID"
+      - name: Log env value
+        run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
 
       - uses: actions/checkout@v4
         with:
@@ -29,16 +28,6 @@ jobs:
         with:
           node-version: 20
           cache: "npm"
-
-      # Step para verificar se a variável existe
-      - name: Check if NX_CLOUD_ID is set
-        run: |
-          if [ -z "$NX_CLOUD_ID" ]; then
-            echo "❌ NX_CLOUD_ID is not set or is empty"
-            exit 1
-          else
-            echo "✅ NX_CLOUD_ID is set"
-          fi
 
       - run: npm ci --legacy-peer-deps
 

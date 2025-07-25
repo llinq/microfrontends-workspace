@@ -50,5 +50,5 @@ module.exports = {
       ]
     }
   },
-  "nxCloudId": process.env.NX_CLOUD_ID
+  "nxCloudId": "process.env.NX_CLOUD_ID"
 }
