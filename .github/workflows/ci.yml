@@ -14,7 +14,7 @@ jobs:
   main:
     runs-on: ubuntu-latest
     env:
-      NX_CLOUD_ID: Teste
+      NX_CLOUD_ID: ${{ secrets.NX_CLOUD_ID }}
     steps:
       - name: Log env value
         run: echo "My secret value is $NX_CLOUD_ID"
