@@ -18,7 +18,7 @@ jobs:
         env:
           NX_CLOUD_ID: ${{ secrets.NX_CLOUD_ID }}
         run: |
-          example-command "$env:NX_CLOUD_ID"
+          example-command "$NX_CLOUD_ID"
 
       - uses: actions/checkout@v4
         with:
