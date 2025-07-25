@@ -25,8 +25,11 @@ jobs:
           cache: 'npm'
 
       - run: npm ci --legacy-peer-deps
+        working-directory: nx-playground
 
       - run: npx nx run-many -t lint test build
+        working-directory: nx-playground
 
       - run: npx nx-cloud fix-ci
         if: always()
+        working-directory: nx-playground
